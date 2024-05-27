@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 style="font-size: 24px; margin-bottom: 20px; color: #333; text-align: center;">Admin Panel</h1>
+
+<div style="text-align: center; margin-bottom: 20px;">
+  <a href="{{url_for('add_section')}}" style="text-decoration: none; color: #4CAF50;">
+    <h3 style="display: inline-block; margin: 0; font-size: 20px; transition: color 0.3s ease;">Add Section</h3>
+  </a>
+</div>
+
+<div style="margin-bottom: 40px;">
+  <ul style="list-style: none; padding: 0;">
+    {% for section in sections %}
+    <li style="margin-bottom: 15px; padding: 10px; border-bottom: 1px solid #ccc;">
+      <span style="font-size: 18px;">{{ section.name }}</span>
+      <a href="{{ url_for('edit_section', section_id=section.id) }}" style="margin-left: 10px; color: #FFA500; text-decoration: none; font-size: 16px;">Edit</a>
+      <a href="{{ url_for('delete_section', section_id=section.id) }}" style="margin-left: 10px; color: #FF4500; text-decoration: none; font-size: 16px;">Delete</a>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+
+<div style="text-align: center; margin-bottom: 20px;">
+  <a href="{{ url_for('add_product') }}" style="text-decoration: none; color: #4CAF50;">
+    <h3 style="display: inline-block; margin: 0; font-size: 20px; transition: color 0.3s ease;">Add Product</h3>
+  </a>
+</div>
+
+<div>
+  <ul style="list-style: none; padding: 0;">
+    {% for product in products %}
+    <li style="margin-bottom: 25px; padding: 10px; border-bottom: 1px solid #ccc;">
+      <span style="font-size: 18px; font-weight: bold;">{{ product.name }}</span>
+      <br />
+      <span style="font-size: 16px;">Stock: {{ product.stock }}</span>
+      <br />
+      <span style="font-size: 16px;">Rate: ${{ product.rate_per_unit }}</span>
+      <br />
+      <span style="font-size: 16px;">Manufacture Date: {{ product.manufacture_date }}</span>
+      <br />
+      <span style="font-size: 16px;">Expiry Date: {{ product.expiry_date }}</span>
+      <br />
+      {% if product.section %}
+      <span style="font-size: 16px;">Section: {{ product.section.name }}</span>
+      <br />
+      {% endif %}
+      <a href="{{ url_for('edit_product', product_id=product.id) }}" style="margin-left: 10px; color: #FFA500; text-decoration: none; font-size: 16px;">Edit</a>
+      <a href="{{ url_for('delete_product', product_id=product.id) }}" style="margin-left: 10px; color: #FF4500; text-decoration: none; font-size: 16px;">Delete</a>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}

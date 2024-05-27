@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="delete-purchase-container" style="max-width: 500px; margin: 50px auto; padding: 20px; background-color: #fff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+  <h1 class="delete-purchase-title" style="font-size: 24px; margin-bottom: 20px; color: #333; text-align: center;">Delete Purchase</h1>
+  <p class="confirmation-message" style="font-size: 18px; margin-bottom: 20px; text-align: center;">Are you sure you want to delete the purchase?</p>
+  <form class="delete-form" method="POST" action="{{ url_for('delete_purchase', purchase_id=purchase.id) }}" style="text-align: center;">
+    <button class="delete-button" type="submit" style="padding: 10px 20px; background-color: #FF4500; color: #ffffff; border: none; border-radius: 4px; font-size: 16px; cursor: pointer; transition: background-color 0.3s ease;">Delete</button>
+  </form>
+</div>
+{% endblock %}

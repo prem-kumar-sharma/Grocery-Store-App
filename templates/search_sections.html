@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="search-sections-container" style="max-width: 600px; margin: 50px auto; padding: 20px; background-color: #f9f9f9; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); text-align: center;">
+  <h1 class="search-sections-title" style="font-size: 24px; margin-bottom: 20px; color: #333;">Search Sections</h1>
+  
+  <form action="{{ url_for('search_sections') }}" method="get" style="margin-bottom: 20px;">
+    <input type="text" name="q" value="{{ search_term }}" placeholder="Search Sections" style="padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 16px; width: 70%; margin-right: 10px;">
+    <button type="submit" style="padding: 10px 20px; background-color: #007bff; color: #fff; border: none; border-radius: 4px; font-size: 16px; cursor: pointer; transition: background-color 0.3s ease;">Search</button>
+  </form>
+  
+  <ul class="section-list" style="list-style-type: none; padding: 0; text-align: left;">
+    {% for section in sections %}
+    <li style="margin-bottom: 10px;">{{ section.name }}</li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}

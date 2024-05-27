@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="edit-purchase-container" style="max-width: 500px; margin: 50px auto; padding: 20px; background-color: #fff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+  <h1 class="edit-purchase-title" style="font-size: 24px; margin-bottom: 20px; color: #333; text-align: center;">Edit Purchase</h1>
+  <form class="purchase-form" method="POST" action="{{ url_for('edit_purchase', purchase_id=purchase.id) }}" style="text-align: center;">
+    <label class="form-label" for="user" style="margin-bottom: 10px; font-weight: bold; display: block;">User:</label>
+    <select class="form-select" name="user" style="padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px; font-size: 16px; width: 100%;">
+      {% for user in users %}
+      <option value="{{ user.id }}" {% if user.id == purchase.user.id %}selected{% endif %}>{{ user.username }}</option>
+      {% endfor %}
+    </select><br />
+    <label class="form-label" for="product" style="margin-bottom: 10px; font-weight: bold; display: block;">Product:</label>
+    <select class="form-select" name="product" style="padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px; font-size: 16px; width: 100%;">
+      {% for product in products %}
+      <option value="{{ product.id }}" {% if product.id == purchase.product.id %}selected{% endif %}>{{ product.name }}</option>
+      {% endfor %}
+    </select><br />
+    <label class="form-label" for="quantity" style="margin-bottom: 10px; font-weight: bold; display: block;">Quantity:</label>
+    <input class="form-input" type="number" name="quantity" value="{{ purchase.quantity }}" required style="padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px; font-size: 16px; width: 100%;" /><br />
+    <button class="form-button" type="submit" style="padding: 10px 20px; background-color: #4CAF50; color: #ffffff; border: none; border-radius: 4px; font-size: 16px; cursor: pointer; transition: background-color 0.3s ease;">Save Changes</button>
+  </form>
+</div>
+{% endblock %}

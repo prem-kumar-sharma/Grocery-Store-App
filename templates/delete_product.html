@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="product-delete-container" style="max-width: 500px; margin: 50px auto; padding: 20px; background-color: #fff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+  <h1 style="font-size: 24px; margin-bottom: 20px; color: #333; text-align: center;">Delete Product</h1>
+  <p style="font-size: 18px; margin-bottom: 20px; text-align: center;">Are you sure you want to delete the product "{{ product.name }}"?</p>
+  <form method="POST" action="{{ url_for('delete_product', product_id=product.id) }}" style="text-align: center;">
+    <button type="submit" style="padding: 10px 20px; background-color: #FF4500; color: #ffffff; border: none; border-radius: 4px; font-size: 16px; cursor: pointer; transition: background-color 0.3s ease;">Delete</button>
+  </form>
+</div>
+{% endblock %}

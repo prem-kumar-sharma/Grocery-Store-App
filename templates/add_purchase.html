@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 style="font-size: 24px; margin-bottom: 20px; color: #333; text-align: center;">Add Purchase</h1>
+<form method="POST" action="{{ url_for('add_purchase') }}" style="display: flex; flex-direction: column; max-width: 400px; margin: auto;">
+  <label for="product" style="margin-bottom: 5px; font-weight: bold;">Product:</label>
+  <select name="product" style="padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px; font-size: 16px;">
+    {% for product in products %}
+    <option value="{{ product.id }}">{{ product.name }} - ${{ product.rate }}</option>
+    {% endfor %}
+  </select>
+
+  <label for="quantity" style="margin-bottom: 5px; font-weight: bold;">Quantity:</label>
+  <input type="number" name="quantity" min="0" required style="padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px; font-size: 16px;" />
+
+  <label for="total_amount" style="margin-bottom: 5px; font-weight: bold;">Total Amount:</label>
+  <input type="number" name="total_amount" readonly style="padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px; font-size: 16px;" />
+
+  <button type="submit" style="padding: 10px; background-color: #4CAF50; color: #ffffff; border: none; border-radius: 4px; font-size: 16px; cursor: pointer; transition: background-color 0.3s ease;">Add Purchase</button>
+</form>
+
+<script>
+  document.querySelector('select[name="product"]').addEventListener('change', calculateTotal);
+  document.querySelector('input[name="quantity"]').addEventListener('input', calculateTotal);
+
+  function calculateTotal() {
+    const productSelect = document.querySelector('select[name="product"]');
+    const selectedOption = productSelect.options[productSelect.selectedIndex];
+    const productRate = parseFloat(selectedOption.text.split('- $')[1]);
+    const quantity = parseFloat(document.querySelector('input[name="quantity"]').value);
+    const totalAmount = productRate * quantity;
+    document.querySelector('input[name="total_amount"]').value = totalAmount.toFixed(2);
+  }
+</script>
+{% endblock %}

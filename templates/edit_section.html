@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="edit-section-container" style="max-width: 500px; margin: 50px auto; padding: 20px; background-color: #fff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+  <h1 class="edit-section-title" style="font-size: 24px; margin-bottom: 20px; color: #333; text-align: center;">Edit Section/Category</h1>
+  <form method="POST" action="{{ url_for('edit_section', section_id=section.id) }}" style="text-align: center;">
+    <label for="name" style="margin-bottom: 10px; font-weight: bold; display: block;">Name:</label>
+    <input type="text" name="name" value="{{ section.name }}" required style="padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px; font-size: 16px; width: 100%;" /><br />
+    <label for="type" style="margin-bottom: 10px; font-weight: bold; display: block;">Type:</label>
+    <input type="text" name="type" value="{{ section.type }}" style="padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px; font-size: 16px; width: 100%;" /><br />
+    <!-- <label for="image" style="margin-bottom: 10px; font-weight: bold; display: block;">Image URL:</label>
+    <input type="text" name="image" value="{{ section.image }}" style="padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px; font-size: 16px; width: 100%;" /><br /> -->
+    <button type="submit" style="padding: 10px 20px; background-color: #4CAF50; color: #ffffff; border: none; border-radius: 4px; font-size: 16px; cursor: pointer; transition: background-color 0.3s ease;">Save Changes</button>
+  </form>
+</div>
+{% endblock %}

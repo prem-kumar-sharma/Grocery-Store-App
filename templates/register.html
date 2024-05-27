@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 style="font-size: 24px; margin-bottom: 20px; color: #333; text-align: center;">Register</h1>
+<form method="POST" action="{{ url_for('register') }}" style="display: flex; flex-direction: column; max-width: 400px; margin: auto;">
+  <label for="username" style="margin-bottom: 5px; font-weight: bold;">Username:</label>
+  <input type="text" name="username" required style="padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px; font-size: 16px;" />
+  
+  <label for="password" style="margin-bottom: 5px; font-weight: bold;">Password:</label>
+  <input type="password" name="password" required style="padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px; font-size: 16px;" />
+  
+  <label for="role" style="margin-bottom: 5px; font-weight: bold;">Role:</label>
+  <select name="role" style="padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px; font-size: 16px;">
+    <option value="user">User</option>
+    <option value="admin">Admin</option>
+  </select>
+  
+  <button type="submit" style="padding: 10px; background-color: #4CAF50; color: #ffffff; border: none; border-radius: 4px; font-size: 16px; cursor: pointer; transition: background-color 0.3s ease;">Register</button>
+</form>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="purchases-container" style="max-width: 800px; margin: 50px auto; padding: 20px; background-color: #f9f9f9; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+  <h1 class="purchases-title" style="font-size: 24px; margin-bottom: 20px; color: #333; text-align: center;">Purchases</h1>
+  
+  <ul class="purchase-list" style="list-style-type: none; padding: 0;">
+    {% for purchase, product in purchases %}
+    <li style="background-color: #fff; border-radius: 4px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); padding: 15px; margin-bottom: 15px;">
+      <strong>Product:</strong> {{ product.name if product else 'Unknown Product' }}<br />
+      <strong>User:</strong> {{ purchase.user.username }}<br />
+      <strong>Quantity:</strong> {{ purchase.quantity }}<br />
+      <strong>Total Price:</strong> {{ product.rate_per_unit * purchase.quantity if product else 'Unknown Price' }}<br />
+      <a class="edit-link" href="{{ url_for('edit_purchase', purchase_id=purchase.id) }}" style="color: #007bff; margin-right: 10px;">Edit</a>
+      <a class="delete-link" href="{{ url_for('delete_purchase', purchase_id=purchase.id) }}" style="color: #dc3545;">Delete</a>
+    </li>
+    {% endfor %}
+  </ul>
+  
+  <a class="add-link" href="{{ url_for('add_purchase') }}" style="display: block; margin-top: 20px; text-align: center; font-size: 18px; color: #007bff; text-decoration: none;">Add New Purchase</a>
+</div>
+{% endblock %}

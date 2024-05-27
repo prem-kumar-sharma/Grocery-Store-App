@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 style="font-size: 28px; margin-bottom: 20px; color: #4CAF50; text-align: center;">Grocery App</h1>
+<ul style="list-style: none; padding: 0;">
+  {% for product, section in products_with_sections %}
+  <li style="margin-bottom: 20px; padding: 20px; background-color: #f9f9f9; border: 1px solid #ddd; border-radius: 8px;">
+    <strong>{{ product.name }}</strong> <br />
+    Stock: {{ product.stock }}<br />
+    Rate: {{ product.rate_per_unit }}<br />
+    Manufacture Date: {{ product.manufacture_date }}<br />
+    Expiry Date: {{ product.expiry_date }}<br />
+    Section: {{ section.name }}<br />
+    <form method="POST" action="{{ url_for('add_purchase') }}" style="margin-top: 10px;">
+      <input type="hidden" name="product" value="{{ product.id }}" />
+      <label for="quantity">Quantity:</label>
+      <input type="number" name="quantity" min="1" required style="padding: 5px; margin: 5px 0; border: 1px solid #ccc; border-radius: 4px;" />
+      <button type="submit" style="padding: 10px 15px; background-color: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer; transition: background-color 0.3s ease;">Purchase</button>
+    </form>
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}
