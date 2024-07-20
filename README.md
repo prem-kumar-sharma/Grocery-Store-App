@@ -10,6 +10,10 @@ This project is a web application designed for managing products, sections, user
 
 The system also includes an admin panel for managing products, sections, and user roles.
 
+## Screenshots
+
+![Screenshot 2024-06-24 133100](https://github.com/user-attachments/assets/c65d3037-3741-40d7-989a-eb9f6c350cad)
+
 ## Technologies Used
 
 - **Flask**: A simple and extensible micro web framework in Python.
